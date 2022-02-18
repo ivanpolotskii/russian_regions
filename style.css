@@ -1,0 +1,111 @@
+.map {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  text-align: center;
+}
+
+.map img {
+  z-index: 1;
+  width: 100%;
+}
+
+.map svg {
+  z-index: 10;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.map svg path {
+  opacity: 0;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.map svg path:hover {
+  opacity: 1;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.description {
+  display: none;
+  border: 1px solid rgba(255, 255, 255, 0.493);
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  background-color: #fff;
+  z-index: 11;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.fa-square-plus, .minus, .fa-compress {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 100;
+}
+
+.fa-square-plus {
+  position: fixed;
+  bottom: 100px;
+  right: 15px;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.37);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.fa-square-plus:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.fa-square-minus {
+  position: fixed;
+  bottom: 60px;
+  right: 15px;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0.37);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.fa-square-minus:hover {
+  cursor: pointer;
+  color: black;
+}
+/*# sourceMappingURL=style.css.map */
