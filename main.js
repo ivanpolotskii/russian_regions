@@ -40,7 +40,7 @@ let description = document.querySelector(".description");
 //     alert(1)
 // });
 
-// map zoom
+//! map zoom
 let mapimg = document.querySelector(".img");
 let map = document.querySelector(".map");
 let svg = document.querySelector(".svg");
@@ -51,69 +51,100 @@ let compress = document.querySelector(".fa-compress");
 let mapwidth=100;
 map.style.width = `${mapwidth}%`;
 plus.addEventListener('click',function(e){
-    mapwidth+=60;
-    map.style.width=`${mapwidth}%`;
+    if(mapwidth<500){
+        // console.log(document.documentElement.scrollWidth,'',document.documentElement.scrollHeight);
+        // console.log(document.documentElement.scrollLeft,'',document.documentElement.scrollTop);
+        mapwidth+=60;
+        map.style.width=`${mapwidth}%`;
+        
+        // window.scrollBy(document.documentElement.clientWidth.scrollWidth/2,document.documentElement.clientHeight/2);
+        
+    }
 });
 minus.addEventListener('click',function(e){
-    mapwidth-=60;
-    map.style.width=`${mapwidth}%`;
+    if(mapwidth>100){
+        mapwidth-=60;
+        map.style.width=`${mapwidth}%`;
+        // window.scrollBy({top:window.scrollX/2,left:window.scrollY/2,behavior:"smooth"});
+    }
 });
 
-// Magadan
+//! map moving
+let body = document.querySelector('body');
+let startX;
+let startY;
+let fl=true;
+map.addEventListener('mousedown',function(event){
+    fl=true;
+    startX=event.pageX;
+    startY=event.pageY;
+    description.style.display="none";
+    map.addEventListener('mousemove',function(e){
+        if(fl){
+            description.style.display="none";
+            window.scrollTo({top:(startY-e.clientY),left:(startX-e.clientX)});
+        }  
+    });
+    map.addEventListener('mouseup',function(e){
+        fl=false;
+    })
+})
+
+//! Magadan
 clickmagadan.addEventListener("mousemove",function(e){
     description.innerHTML=this.getAttribute("data-title");
-    description.style.left=`${e.clientX+12}px`;
-    description.style.top=`${e.clientY-12}px`;
+    description.style.left=`${e.pageX+12}px`;
+    description.style.top=`${e.pageY-12}px`;
     description.style.display='flex';
 });
 clickmagadan.addEventListener("mouseleave",function(e){
     description.style.display='none';
 });
-// Komi
+//! Komi
 clickkomi.addEventListener("mousemove",function(e){
     description.innerHTML=this.getAttribute("data-title");
-    description.style.left=`${e.clientX+12}px`;
-    description.style.top=`${e.clientY-12}px`;
+    description.style.left=`${e.pageX+12}px`;
+    description.style.top=`${e.pageY-12}px`;
     description.style.display='flex';
 });
 clickkomi.addEventListener("mouseleave",function(e){
     description.style.display='none';
 });
-// Murmansk
+//! Murmansk
 clickmurmansk.addEventListener("mousemove",function(e){
     description.innerHTML=this.getAttribute("data-title");
-    description.style.left=`${e.clientX+12}px`;
-    description.style.top=`${e.clientY-12}px`;
+    description.style.left=`${e.pageX+12}px`;
+    description.style.top=`${e.pageY-12}px`;
     description.style.display='flex';
 });
 clickmurmansk.addEventListener("mouseleave",function(e){
     description.style.display='none';
 });
-// chuckchi
+//! chuckchi
 clickchuckchi.addEventListener("mousemove",function(e){
     description.innerHTML=this.getAttribute("data-title");
-    description.style.left=`${e.clientX+12}px`;
-    description.style.top=`${e.clientY-12}px`;
+    description.style.left=`${e.pageX+12}px`;
+    description.style.top=`${e.pageY-12}px`;
     description.style.display='flex';
 });
 clickchuckchi.addEventListener("mouseleave",function(e){
     description.style.display='none';
 });
-// cumchatka
+//! cumchatka
 clickcumchatka.addEventListener("mousemove",function(e){
     description.innerHTML=this.getAttribute("data-title");
-    description.style.left=`${e.clientX+12}px`;
-    description.style.top=`${e.clientY-12}px`;
+    description.style.left=`${e.pageX+12}px`;
+    description.style.top=`${e.pageY-12}px`;
     description.style.display='flex';
 });
 clickcumchatka.addEventListener("mouseleave",function(e){
     description.style.display='none';
 });
-// krasnoyarsk
+//! krasnoyarsk
 clickkrasnoyarsk.addEventListener("mousemove",function(e){
     description.innerHTML=this.getAttribute("data-title");
-    description.style.left=`${e.clientX+12}px`;
-    description.style.top=`${e.clientY-12}px`;
+    description.style.left=`${e.pageX+12}px`;
+    description.style.top=`${e.pageY-12}px`;
     description.style.display='flex';
 });
 clickkrasnoyarsk.addEventListener("mouseleave",function(e){
