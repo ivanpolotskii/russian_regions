@@ -15,6 +15,8 @@ let clickkrasnoyarsk =document.querySelector(".krasnoyarsk_path");
 
 let description = document.querySelector(".description");
 
+sessionStorage.setItem("translatex",0);
+sessionStorage.setItem("translatey",0);
 // clickmagadan.addEventListener("click",function(){
 //     mong.style.display="block";
 // });
@@ -48,24 +50,37 @@ let plus = document.querySelector(".fa-square-plus");
 let minus = document.querySelector(".fa-square-minus");
 let compress = document.querySelector(".fa-compress");
 
-let mapwidth=100;
-map.style.width = `${mapwidth}%`;
+let scale=1;
+let translateX=0;
+let translateY=0;
+let scalechanged=false;
 plus.addEventListener('click',function(e){
-    if(mapwidth<500){
-        // console.log(document.documentElement.scrollWidth,'',document.documentElement.scrollHeight);
-        // console.log(document.documentElement.scrollLeft,'',document.documentElement.scrollTop);
-        mapwidth+=60;
-        map.style.width=`${mapwidth}%`;
-        
-        // window.scrollBy(document.documentElement.clientWidth.scrollWidth/2,document.documentElement.clientHeight/2);
-        
+    if(scale<2){
+        scale+=1;
+        scalechanged=true;
+        if(sessionStorage.getItem("translatex")){
+            translateX=sessionStorage.getItem("translatex")*scale;
+            translateY=sessionStorage.getItem("translatey")*scale;
+            sessionStorage.setItem("translatex",translateX);
+            sessionStorage.setItem("translatey",translateY);
+        }
+        console.log(translateX,translateY,scale);
+        map.style.transform=`translate(${translateX}px,${translateY}px) scale(${scale})`;
+        // map.style.transform +=`scale(${scale})`;
     }
 });
 minus.addEventListener('click',function(e){
-    if(mapwidth>100){
-        mapwidth-=60;
-        map.style.width=`${mapwidth}%`;
-        // window.scrollBy({top:window.scrollX/2,left:window.scrollY/2,behavior:"smooth"});
+    if(scale>1){
+        scale-=1;
+        scalechanged=true;
+        if(sessionStorage.getItem("translatex")){
+            translateX=sessionStorage.getItem("translatex")/2;
+            translateY=sessionStorage.getItem("translatey")/2;
+            sessionStorage.setItem("translatex",translateX);
+            sessionStorage.setItem("translatey",translateY);
+        }
+        console.log(translateX,translateY,scale);
+        map.style.transform=`translate(${translateX}px,${translateY}px) scale(${scale})`;
     }
 });
 
@@ -73,20 +88,44 @@ minus.addEventListener('click',function(e){
 let body = document.querySelector('body');
 let startX;
 let startY;
+let coordsX=0;
+let coordsY=0;
+let promX;
+let promY;
 let fl=true;
 map.addEventListener('mousedown',function(event){
     fl=true;
-    startX=event.pageX;
-    startY=event.pageY;
+    startX=event.clientX;
+    startY=event.clientY;
     description.style.display="none";
     map.addEventListener('mousemove',function(e){
         if(fl){
             description.style.display="none";
-            window.scrollTo({top:(startY-e.clientY),left:(startX-e.clientX)});
+            promX=e.clientX-startX;
+            promY=e.clientY-startY;
+            if(scalechanged){
+                map.style.transform=`translate(${coordsX*scale+promX}px,${coordsY*scale+promY}px) scale(${scale})`;
+            }else{
+                map.style.transform=`translate(${coordsX+promX}px,${coordsY+promY}px) scale(${scale})`;
+            }
+            
+            sessionStorage.setItem("translatex",(coordsX+promX));
+            sessionStorage.setItem("translatey",(coordsY+promY));
+            // console.log("promX:",promX,` `,"coordsX:",coordsX);
         }  
     });
     map.addEventListener('mouseup',function(e){
-        fl=false;
+        if(fl){
+            coordsX+=promX;
+            coordsY+=promY;
+            fl=false;
+        }
+        if(scalechanged===true){
+            scalechanged=false;
+        }
+        
+        // console.log("promX:",promX,` `,"coordsX:",coordsX);
+        
     })
 })
 
