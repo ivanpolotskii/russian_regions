@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -8,55 +9,41 @@
 body {
   position: relative;
 }
-
 body::-webkit-scrollbar {
   width: 0;
 }
 
 .map {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  transition: scale 1s;
+  box-sizing: border-box;
   position: relative;
   text-align: center;
 }
-
 .map img {
   z-index: 1;
   width: 100%;
 }
-
 .map svg {
   z-index: 10;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
 }
-
 .map svg path {
   opacity: 0;
   cursor: pointer;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-
 .map svg path:hover {
   opacity: 1;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
@@ -68,24 +55,14 @@ body::-webkit-scrollbar {
   height: 30px;
   background-color: #fff;
   z-index: 11;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .fa-square-plus, .minus, .fa-compress {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   bottom: 10px;
   right: 20px;
@@ -98,13 +75,11 @@ body::-webkit-scrollbar {
   right: 15px;
   font-size: 40px;
   color: rgba(0, 0, 0, 0.37);
-  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
-
 .fa-square-plus:hover {
   cursor: pointer;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 .fa-square-minus {
@@ -113,12 +88,19 @@ body::-webkit-scrollbar {
   right: 15px;
   font-size: 40px;
   color: rgba(0, 0, 0, 0.37);
-  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
-
 .fa-square-minus:hover {
   cursor: pointer;
-  color: black;
+  color: rgb(0, 0, 0);
 }
-/*# sourceMappingURL=style.css.map */
+
+.description {
+  text-align: center;
+  color: #fff; /* Цвет текста */
+  height: auto;
+  background-color: #333; /* Цвет фона */
+  padding: 8px 12px; /* Отступы внутри подсказки */
+  border-radius: 4px; /* Закругление углов */
+  font-size: 14px; /* Размер шрифта */
+}/*# sourceMappingURL=style.css.map */
